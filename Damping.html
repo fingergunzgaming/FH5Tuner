@@ -144,7 +144,7 @@
             setV('FRresult', FRresult); // Setting the hidden value to the result
 			setV('FBresult', FBresult); // Setting the hidden value to the result
             setV('NFR', FRresult); // Setting 'New Front Rebound' to the same result
-			setV('5NFB', FBresult / 2); // Setting '50% Front Bump' to the same result divided in half
+			setV('5NFB', FBresult * 0.55); // Setting '50% Front Bump' to the same result divided in half
 			setV('7NFB', FRresult * 0.7); // Setting '70% Front Bump' to the same result multiplied by 70%
         }
         
@@ -156,137 +156,21 @@
             setV('RRresult', RRresult); // Setting the hidden value to the result
 			setV('RBresult', RBresult); // Setting the hidden value to the result
             setV('NRR', RRresult); // Setting 'New Rear Rebound' to the same result
-			setV('5NRB', RBresult / 2); // Setting '50% Rear Bump' to the same result divided in half
+			setV('5NRB', RBresult * 0.55); // Setting '50% Rear Bump' to the same result divided in half
 			setV('7NRB', RRresult * 0.7); // Setting '70% Rear Bump' to the same result multiplied by 70%
         }
     }
-	
-	function calculate70() {
-        const getV = (id) => parseFloat(document.getElementById(id).value) || 0;
-        const setV = (id, val) => document.getElementById(id).value = val.toFixed(2);
-
-        // 1. Get the Weight Distribution (The "Driver" of the formula)
-        // Ensure you have an input with id="FWP" in your HTML
-        const FWP_Raw = getV('FWP'); 
-        const FWP = FWP_Raw / 100;    // Convert e.g., 55 to 0.55
-        const RWP = (100 - FWP_Raw) / 100; // The remainder for the rear
-
-        // Update the Rear Weight % field if you have one
-        if(document.getElementById('RWP')) {
-            document.getElementById('RWP').value = (100 - FWP_Raw).toFixed(1);
-        }
-
-        // 2. Front Calculation
-        if (FWP !== 0) {
-            // Standard Forza Tuning Formula
-            const FRresult = (20 - 1) * (FWP + 0.2) + 1; // 70%
-			const FBresult = (20 - 1) * (FWP + 0.2) + 1; // 70%
-            setV('FRresult', FRresult); // Setting the hidden value to the result
-			setV('FBresult', FBresult); // Setting the hidden value to the result
-            setV('NFR', FRresult); // Setting 'New Front Rebound' to the same result
-			setV('5NFB', FBresult / 2); // Setting '50% Front Bump' to the same result divided in half
-			setV('7NFB', FRresult * 0.7); // Setting '70% Front Bump' to the same result multiplied by 70%
-        }
-
-        // 3. Rear Calculation
-        if (RWP !== 0) {
-            // Standard Forza Tuning Formula
-            const RRresult = (20 - 1) * (RWP + 0.2) + 1; // 70%
-			const RBresult = (20 - 1) * (RWP + 0.2) + 1; // 70%
-            setV('RRresult', RRresult); // Setting the hidden value to the result
-			setV('RBresult', RBresult); // Setting the hidden value to the result
-            setV('NRR', RRresult); // Setting 'New Rear Rebound' to the same result
-			setV('5NRB', RBresult / 2); // Setting '50% Rear Bump' to the same result divided in half
-			setV('7NRB', RRresult * 0.7); // Setting '70% Rear Bump' to the same result multiplied by 70%
-        }
-    }
-	
-	function calculate40() {
-        const getV = (id) => parseFloat(document.getElementById(id).value) || 0;
-        const setV = (id, val) => document.getElementById(id).value = val.toFixed(2);
-
-        // 1. Get the Weight Distribution (The "Driver" of the formula)
-        // Ensure you have an input with id="FWP" in your HTML
-        const FWP_Raw = getV('FWP'); 
-        const FWP = FWP_Raw / 100;    // Convert e.g., 55 to 0.55
-        const RWP = (100 - FWP_Raw) / 100; // The remainder for the rear
-
-        // Update the Rear Weight % field if you have one
-        if(document.getElementById('RWP')) {
-            document.getElementById('RWP').value = (100 - FWP_Raw).toFixed(1);
-        }
-
-        // 2. Front Calculation
-        if (FWP !== 0) {
-            // Standard Forza Tuning Formula
-            const FRresult = (20 - 1) * (FWP - 0.1) + 1; // 40%
-			const FBresult = (20 - 1) * (FWP - 0.1) + 1; // 40%
-            setV('FRresult', FRresult); // Setting the hidden value to the result
-			setV('FBresult', FBresult); // Setting the hidden value to the result
-            setV('NFR', FRresult); // Setting 'New Front Rebound' to the same result
-			setV('5NFB', FBresult / 2); // Setting '50% Front Bump' to the same result divided in half
-			setV('7NFB', FRresult * 0.7); // Setting '70% Front Bump' to the same result multiplied by 70%
-        }
-
-        // 3. Rear Calculation
-        if (RWP !== 0) {
-            // Standard Forza Tuning Formula
-            const RRresult = (20 - 1) * (RWP - 0.1) + 1; // 40%
-			const RBresult = (20 - 1) * (RWP - 0.1) + 1; // 40%
-            setV('RRresult', RRresult); // Setting the hidden value to the result
-			setV('RBresult', RBresult); // Setting the hidden value to the result
-            setV('NRR', RRresult); // Setting 'New Rear Rebound' to the same result
-			setV('5NRB', RBresult / 2); // Setting '50% Rear Bump' to the same result divided in half
-			setV('7NRB', RRresult * 0.7); // Setting '70% Rear Bump' to the same result multiplied by 70%
-        }
-    }
-	
-	function calculate80() {
-        const getV = (id) => parseFloat(document.getElementById(id).value) || 0;
-        const setV = (id, val) => document.getElementById(id).value = val.toFixed(2);
-
-        // 1. Get the Weight Distribution (The "Driver" of the formula)
-        // Ensure you have an input with id="FWP" in your HTML
-        const FWP_Raw = getV('FWP'); 
-        const FWP = FWP_Raw / 100;    // Convert e.g., 55 to 0.55
-        const RWP = (100 - FWP_Raw) / 100; // The remainder for the rear
-
-        // Update the Rear Weight % field if you have one
-        if(document.getElementById('RWP')) {
-            document.getElementById('RWP').value = (100 - FWP_Raw).toFixed(1);
-        }
-
-        // 2. Front Calculation
-        if (FWP !== 0) {
-            // Standard Forza Tuning Formula
-            const FRresult = (20 - 1) * (FWP + 0.3) + 1; // 80%
-			const FBresult = (20 - 1) * (FWP + 0.3) + 1; // 80%
-            setV('FRresult', FRresult); // Setting the hidden value to the result
-			setV('FBresult', FBresult); // Setting the hidden value to the result
-            setV('NFR', FRresult); // Setting 'New Front Rebound' to the same result
-			setV('5NFB', FBresult / 2); // Setting '50% Front Bump' to the same result divided in half
-			setV('7NFB', FRresult * 0.7); // Setting '70% Front Bump' to the same result multiplied by 70%
-        }
-
-        // 3. Rear Calculation
-        if (RWP !== 0) {
-            // Standard Forza Tuning Formula
-            const RRresult = (20 - 1) * (RWP + 0.3) + 1; // 80%
-			const RBresult = (20 - 1) * (RWP + 0.3) + 1; // 80%
-            setV('RRresult', RRresult); // Setting the hidden value to the result
-			setV('RBresult', RBresult); // Setting the hidden value to the result
-            setV('NRR', RRresult); // Setting 'New Rear Rebound' to the same result
-			setV('5NRB', RBresult / 2); // Setting '50% Rear Bump' to the same result divided in half
-			setV('7NRB', RRresult * 0.7); // Setting '70% Rear Bump' to the same result multiplied by 70%
-        }
-    }
-
 </script>
 	
 </head>
 <body>
 
     <div class="container">
+
+		<header>
+        	<h2>Damping Tuner</h2>
+    	</header>
+		
         <div class="instructions">
             <strong>How to use:</strong> Upgrade the vehicle with racing springs.
 			<br>Then, input the vehicles front weight values below!
@@ -304,19 +188,6 @@
             <div class="input-group">
                 <label>Rear Weight Percentage</label>
                 <input type="number" id="RWP" placeholder="e.g. 54" readonly>
-            </div>
-        </div>
-		
-		<div class="cal-section">
-		<h5> </h5>
-            <div class="grid">
-				<div class="input-group"><button class="neon-btn" onclick="calculate50()">Normal 50% Rebound</button></div>
-				<div class="input-group"><button class="neon-btn" onclick="calculate70()">Normal 70% Rebound</button></div>
-            </div>
-			<p> </p>
-			<div class="grid">
-                <div class="input-group"><button class="neon-btn" onclick="calculate40()">Softer 40% Rebound</button></div>
-				<div class="input-group"><button class="neon-btn" onclick="calculate80()">Stiffer 80% Rebound</button></div>
             </div>
         </div>
 
