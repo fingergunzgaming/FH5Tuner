@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antiroll Bar Tuner!</title>
+    <style>
+        :root {
+            --neon-pink: #ff0055;
+            --neon-blue: #00f2ff;
+            --dark-bg: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--neon-pink);
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h2 { color: var(--neon-pink); text-transform: uppercase; letter-spacing: 2px; }
+        h5 { color: var(--neon-blue); border-bottom: 1px solid #444; padding-bottom: 5px; }
+
+        .container {
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .instructions {
+            background: rgba(0, 242, 255, 0.1);
+            padding: 10px;
+            border-left: 4px solid var(--neon-blue);
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 4px;
+            font-weight: bold;
+            color: #aaa;
+            font-size: 0.85em;
+            text-transform: uppercase;
+        }
+
+        input {
+            background: #111;
+            border: 1px solid #444;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+        }
+
+        input[readonly] {
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+            font-weight: bold;
+            cursor: default;
+        }
+
+        .results-section {
+            margin-top: ;
+            padding-top: ;
+            border-top: ;
+        }
+		
+		.neon-btn {
+			padding: 12px 24px;
+			background: var(--dark-bg);
+			color: #ff0055; /* neon-pink */
+			border: 2px solid #ff0055;
+			border-radius: 6px;
+			font-weight: bold;
+			text-transform: uppercase;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
+		}
+
+		.neon-btn:hover {
+			background: #ff0055;
+			color: white;
+			box-shadow: 0 0 20px rgba(255, 0, 85, 0.6);
+		}
+    </style>
+	
+	<script>
+    function calculateSoft() {
+        const getV = (id) => parseFloat(document.getElementById(id).value) || 0;
+        const setV = (id, val) => document.getElementById(id).value = val.toFixed(2);
+
+        // 1. Get the Weight Distribution (The "Driver" of the formula)
+        // Ensure you have an input with id="FWP" in your HTML
+        const FWP_Raw = getV('FWP'); 
+        const FWP = FWP_Raw / 100;    // Convert e.g., 55 to 0.55
+        const RWP = (100 - FWP_Raw) / 100; // The remainder for the rear
+
+        // Update the Rear Weight % field if you have one
+        if(document.getElementById('RWP')) {
+            document.getElementById('RWP').value = (100 - FWP_Raw).toFixed(1);
+        }
+
+        // 2. Front Calculation
+        const FMN = getV('FMN');
+        const FMX = getV('FMX');
+        
+        if (FMX !== 0) {
+            // Standard Forza Tuning Formula
+            const Fresult = (FMX - FMN) * FWP + FMN;
+            setV('Fresult', Fresult);
+            setV('NF', Fresult * FWP + FMN); // Setting 'New Front' to the same result
+        }
+
+        // 3. Rear Calculation
+        const RMN = getV('RMN');
+        const RMX = getV('RMX');
+        
+        if (RMX !== 0) {
+            // Standard Forza Tuning Formula
+            const Rresult = (RMX - RMN) * RWP + RMN;
+            setV('Rresult', Rresult);
+            setV('NR', Rresult * RWP + RMN); // Setting 'New Rear' to the same result
+        }
+    }
+	
+	function calculateStiff() {
+        const getV = (id) => parseFloat(document.getElementById(id).value) || 0;
+        const setV = (id, val) => document.getElementById(id).value = val.toFixed(2);
+
+        // 1. Get the Weight Distribution (The "Driver" of the formula)
+        // Ensure you have an input with id="FWP" in your HTML
+        const FWP_Raw = getV('FWP'); 
+        const FWP = FWP_Raw / 100;    // Convert e.g., 55 to 0.55
+        const RWP = (100 - FWP_Raw) / 100; // The remainder for the rear
+
+        // Update the Rear Weight % field if you have one
+        if(document.getElementById('RWP')) {
+            document.getElementById('RWP').value = (100 - FWP_Raw).toFixed(1);
+        }
+
+        // 2. Front Calculation
+        const FMN = getV('FMN');
+        const FMX = getV('FMX');
+        
+        if (FMX !== 0) {
+            // Standard Forza Tuning Formula
+            const Fresult = (FMX - FMN) * FWP + FMN;
+            setV('Fresult', Fresult);
+            setV('NF', Fresult); // Setting 'New Front' to the same result
+        }
+
+        // 3. Rear Calculation
+        const RMN = getV('RMN');
+        const RMX = getV('RMX');
+        
+        if (RMX !== 0) {
+            // Standard Forza Tuning Formula
+            const Rresult = (RMX - RMN) * RWP + RMN;
+            setV('Rresult', Rresult);
+            setV('NR', Rresult); // Setting 'New Rear' to the same result
+        }
+    }
+</script>
+	
+</head>
+<body>
+
+    <header>
+        <h2>Antiroll Bars Tuner</h2>
+    </header>
+	
+	<div class="container">
+        <div class="instructions">
+            <strong>How to use:</strong> Upgrade the vehicle with racing antiroll bars.
+			<br>Then, input the vehicles min and max antiroll bars and front weight values below!
+        </div>
+
+        <h5>Vehicle Front Values</h5>
+        <div class="grid">
+            <div class="input-group">
+                <label>Front Antiroll Bar Min</label>
+                <input type="number" id="FMN" placeholder="e.g. 1" oninput="calculateSoft()">
+            </div>
+            <div class="input-group">
+                <label>Front Antiroll Bar Max</label>
+                <input type="number" id="FMX" placeholder="e.g. 40" oninput="calculateSoft()">
+            </div>
+            <div class="input-group">
+                <label>Front Weight Percentage</label>
+                <input type="number" id="FWP" placeholder="e.g. 54" oninput="calculateSoft()">
+            </div>
+        </div>
+
+        <h5 style="margin-top: 10px;">Vehicle Rear Values</h5>
+        <div class="grid">
+            <div class="input-group">
+                <label>Rear Antiroll Bar Min</label>
+                <input type="number" id="RMN" placeholder="e.g. 1" oninput="calculateSoft()">
+            </div>
+            <div class="input-group">
+                <label>Rear Antiroll Bar Max</label>
+                <input type="number" id="RMX" placeholder="e.g. 40" oninput="calculateSoft()">
+            </div>
+            <div class="input-group">
+                <label>Rear Weight Percentage</label>
+                <input type="number" id="RWP" placeholder="e.g. 54" readonly>
+            </div>
+        </div>
+		
+		<div class="cal-section">
+		<h5> </h5>
+            <div class="grid">
+                <div class="input-group"><button class="neon-btn" onclick="calculateSoft()">Calculate Soft</button></div>
+                <div class="input-group"><button class="neon-btn" onclick="calculateStiff()">Calculate Stiff</button></div>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <h5>New Antiroll Bar Settings</h5>
+            <div class="grid">
+                <div class="input-group"><label>New Front Antiroll Bar</label><input type="text" id="NF" readonly></div>
+                <div class="input-group"><label>New Rear Antiroll Bar</label><input type="text" id="NR" readonly></div>
+            </div>
+        </div>
+
+    </div>
+	
+	    <!-- Hidden calculation helpers -->
+    <input type="hidden" id="Fresult">
+    <input type="hidden" id="Rresult">
+
+</body>
+</html>

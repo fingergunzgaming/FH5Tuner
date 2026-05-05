@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-Speed Gear Tuner!</title>
+    <style>
+        :root {
+            --neon-pink: #ff0055;
+            --neon-blue: #00f2ff;
+            --dark-bg: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--neon-pink);
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h2 { color: var(--neon-pink); text-transform: uppercase; letter-spacing: 2px; }
+        h5 { color: var(--neon-blue); border-bottom: 1px solid #444; padding-bottom: 5px; }
+
+        .container {
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .instructions {
+            background: rgba(0, 242, 255, 0.1);
+            padding: 10px;
+            border-left: 4px solid var(--neon-blue);
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 4px;
+            font-weight: bold;
+            color: #aaa;
+            font-size: 0.85em;
+            text-transform: uppercase;
+        }
+
+        input {
+            background: #111;
+            border: 1px solid #444;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+        }
+
+        input[readonly] {
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+            font-weight: bold;
+            cursor: default;
+        }
+
+        .results-section {
+            margin-top: ;
+            padding-top: ;
+            border-top: ;
+        }
+    </style>
+
+    <script>
+        function calculateEverything() {
+            const getV = (id) => parseFloat(document.getElementById(id).value);
+            const setV = (id, val) => document.getElementById(id).value = val;
+
+            // 1. WP Calculation
+            var VW = getV('VW'), HP = getV('HP');
+            var WPresult = 0;
+            if (!isNaN(VW) && !isNaN(HP) && HP !== 0) {
+                WPresult = VW / HP;
+                setV('WPresult', WPresult.toFixed(1));
+            }
+
+            // 2. GP Calculation
+            var D1 = getV('D1'), D4 = getV('D4');
+            var GPresult = 0;
+            if (!isNaN(D1) && !isNaN(D4)) {
+                GPresult = D1 - D4;
+                setV('GPresult', GPresult);
+            }
+
+            // 3. FD Calculation
+            var WPN = getV('WPresult'), GPN = getV('GPresult'), DF = getV('DF');
+            if (!isNaN(WPN) && !isNaN(GPN) && GPN !== 0) {
+                setV('FDresult', (WPN * (GPN / 100) + DF).toFixed(2));
+            }
+
+            // 4. G1-G6 Calculation
+            var inputs = ['D1', 'D2', 'D3', 'D4'];
+            var outputs = ['N1', 'N2', 'N3', 'N4'];
+            if (!isNaN(GPN) && GPN !== 0) {
+                for (var i = 0; i < inputs.length; i++) {
+                    var val = getV(inputs[i]);
+                    if (!isNaN(val)) {
+                        var res = (i < 2) ? Math.abs(val * (GPN / 100) - val) : Math.abs(val * (GPN / 100) + val);
+                        setV(outputs[i], res.toFixed(2));
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="instructions">
+            <strong>How to use:</strong> Upgrade the vehicle with a drift 4-Speed transmission. Drive on the highway and adjust the <strong>Final Drive only</strong> until it hits max speed at the RPM redline. Then, input the vehicles values below!
+        </div>
+
+        <h5>Vehicle Specs</h5>
+        <div class="grid">
+            <div class="input-group">
+                <label>Vehicle Weight (lbs)</label>
+                <input type="number" id="VW" placeholder="e.g. 2800" oninput="calculateEverything()">
+            </div>
+            <div class="input-group">
+                <label>Horse Power</label>
+                <input type="number" id="HP" placeholder="e.g. 650" oninput="calculateEverything()">
+            </div>
+            <div class="input-group">
+                <label>Current Final Drive</label>
+                <input type="number" id="DF" placeholder="e.g. 3.73" oninput="calculateEverything()">
+            </div>
+        </div>
+
+        <h5 style="margin-top: 10px;">Default Gear Ratios</h5>
+        <div class="grid">
+            <div class="input-group"><label>Default 1st</label><input type="number" id="D1" oninput="calculateEverything()"></div>
+            <div class="input-group"><label>Default 2nd</label><input type="number" id="D2" oninput="calculateEverything()"></div>
+            <div class="input-group"><label>Default 3rd</label><input type="number" id="D3" oninput="calculateEverything()"></div>
+            <div class="input-group"><label>Default 4th</label><input type="number" id="D4" oninput="calculateEverything()"></div>
+        </div>
+
+        <div class="results-section">
+            <h5>New Gear Ratios</h5>
+            <div class="grid">
+                <div class="input-group"><label>New Final Drive</label><input type="text" id="FDresult" readonly></div>
+                <div class="input-group"><label>New 1st</label><input type="text" id="N1" readonly></div>
+                <div class="input-group"><label>New 2nd</label><input type="text" id="N2" readonly></div>
+                <div class="input-group"><label>New 3rd</label><input type="text" id="N3" readonly></div>
+                <div class="input-group"><label>New 4th</label><input type="text" id="N4" readonly></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden calculation helpers -->
+    <input type="hidden" id="WPresult">
+    <input type="hidden" id="GPresult">
+
+</body>
+</html>

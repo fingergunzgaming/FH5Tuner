@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forza Horizon 5 Tuner!</title>
+	
+    <style>
+    :root {
+        --neon-pink: #ff0055;
+        --neon-blue: #00f2ff;
+        --dark-bg: #1a1a1a;
+        --card-bg: #2d2d2d;
+        --text-color: #e0e0e0;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--dark-bg);
+        color: var(--text-color);
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 6px;
+    }
+
+    /* Tab Container (matching your .container style) */
+    .tab-container {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        max-width: 1146px; /* Widened to better fit side-by-side content */
+        width: 100%;
+    }
+
+    /* Navigation Bar */
+    .tab-buttons {
+        display: flex;
+        gap: 10px;
+        border-bottom: 3px solid var(--neon-pink);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    /* Tab Buttons */
+    .tab-buttons button {
+        background: #111;
+        border: 1px solid #444;
+        color: var(--text-color);
+        cursor: pointer;
+        padding: 12px 24px;
+        border-radius: 6px 6px 0 0;
+        font-size: 0.75em;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+    }
+
+    .tab-buttons button:hover {
+        border-color: var(--neon-blue);
+        color: var(--neon-blue);
+    }
+
+    .tab-buttons button.active {
+        background: var(--neon-pink);
+        border-color: var(--neon-pink);
+        color: white;
+        box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+    }
+
+    /* Content Area */
+    .tab-content {
+        display: none;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #444;
+    }
+
+    /* Frame Styling */
+    iframe {
+        width: 100%;
+        height: 796px;
+        border: none;
+        display: block; /* Removes tiny bottom gap */
+    }
+</style>
+</head>
+<body>
+
+<div class="tab-container">
+    <!-- Tab navigation -->
+    <div class="tab-buttons">
+	    <button class="tab-link active" onclick="openTab(event, 'Tires')">Tires</button>
+        <button class="tab-link" onclick="openTab(event, 'Gearing')">Gearing</button>
+		<button class="tab-link" onclick="openTab(event, 'Alignment')">Alignment</button>
+		<button class="tab-link" onclick="openTab(event, 'Antirollbars')">Antiroll Bars</button>
+		<button class="tab-link" onclick="openTab(event, 'Springs')">Springs</button>
+		<button class="tab-link" onclick="openTab(event, 'Damping')">Damping</button>
+		<button class="tab-link" onclick="openTab(event, 'Aero')">Aero</button>
+		<button class="tab-link" onclick="openTab(event, 'Brake')">Brake</button>
+		<button class="tab-link" onclick="openTab(event, 'Differential')">Differential</button>
+    </div>
+
+    <!-- Tab content areas with iframes -->
+	<div id="Tires" class="tab-content" style="display: block;">
+        <iframe src="Tires.html"></iframe> <!-- Replace with your actual file or URL -->
+    </div>
+	
+    <div id="Gearing" class="tab-content">
+        <iframe src="Gearing.html"></iframe> <!-- Replace with your actual file or URL -->
+    </div>
+	
+	<div id="Alignment" class="tab-content">
+        <iframe src="Alignment.html"></iframe> <!-- Replace with your actual file or URL -->
+    </div>
+	
+	<div id="Antirollbars" class="tab-content">
+        <iframe src="Antirollbars.html"></iframe> <!-- Replace with your actual file or URL -->
+    </div>
+	
+	<div id="Springs" class="tab-content">
+        <iframe src="Springs.html"></iframe> <!-- Replace with your actual file or URL -->
+    </div>
+	
+	<div id="Damping" class="tab-content">
+        <iframe src="Damping.html"></iframe> <!-- Replace with your actual file or URL -->
+    </div>
+	
+	<div id="Aero" class="tab-content">
+        <iframe src="Aero.html"></iframe> <!-- Replace with your actual file or URL -->
+    </div>
+	
+	<div id="Brake" class="tab-content">
+        <iframe src="Brake.html"></iframe> <!-- Replace with your actual file or URL -->
+    </div>
+	
+	<div id="Differential" class="tab-content">
+        <iframe src="Differential.html"></iframe> <!-- Replace with your actual file or URL -->
+    </div>
+</div>
+
+<script>
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    // Hide all tab content
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    // Remove "active" class from all buttons
+    tablinks = document.getElementsByClassName("tab-link");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    // Show current tab and add active class to clicked button
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+</body>
+</html>

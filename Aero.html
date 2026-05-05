@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forza Horizon 5 Tire Pressure Tuner!</title>
+    <style>
+        :root {
+            --neon-pink: #ff0055;
+            --neon-blue: #00f2ff;
+            --dark-bg: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--neon-pink);
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h2 { color: var(--neon-pink); text-transform: uppercase; letter-spacing: 2px; }
+        h5 { color: var(--neon-blue); border-bottom: 1px solid #444; padding-bottom: 5px; }
+
+        .container {
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .instructions {
+            background: rgba(0, 242, 255, 0.1);
+            padding: 10px;
+            border-left: 4px solid var(--neon-blue);
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 4px;
+            font-weight: bold;
+            color: #aaa;
+            font-size: 0.85em;
+            text-transform: uppercase;
+        }
+
+        input {
+            background: #111;
+            border: 1px solid #444;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+        }
+
+        input[readonly] {
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+            font-weight: bold;
+            cursor: default;
+        }
+
+        .results-section {
+            margin-top: ;
+            padding-top: ;
+            border-top: ;
+        }
+    </style>
+	
+</head>
+<body>
+
+    <header>
+        <h2>Aero Tuning</h2>
+    </header>
+	
+	<div class="stat-box">
+        <center><p>If the vehicle is tuned properly it should <strong>NOT</strong> require aero at all.
+        <br>Drive the vehicle around first and see if it will require it, then add it if needed.
+		<br>If aero <strong>IS</strong> added, Set front and rear to the lowest setting to start with.</p></center>
+    </div>
+
+    <div class="grid">
+        <section>
+            <h5>Guidelines</h5>
+            <ul>
+                <li><strong>Understeering:</strong> Add a small amount to the front</li>
+                <li><strong>Rear Sliding Out In Corners:</strong> Add a small amount to the rear</li>
+            </ul>
+        </section>
+    </div>
+	
+	<div class="grid">
+		<section>
+            <h5>Tuning Logic</h5>
+            <ul>
+                <li><strong>Front Downforce:</strong> More turning grip, Less top speed</li>
+                <li><strong>Rear Downforce:</strong> More rear corner grip, Less top speed</li>
+                <li><strong>Both Downforce:</strong> May help grip, Way less top speed</li>
+            </ul>
+        </section>
+    </div>
+
+    <h5>Pro-Tip</h5>
+    <center><p><strong>DO NOT </strong>use Aero at all!, <strong>IF FORCED </strong>use very little!</p></center>
+</div>
+
+</body>
+</html>

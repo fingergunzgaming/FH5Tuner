@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Differential Tuner!</title>
+    <style>
+        :root {
+            --neon-pink: #ff0055;
+            --neon-blue: #00f2ff;
+            --dark-bg: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--neon-pink);
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h2 { color: var(--neon-pink); text-transform: uppercase; letter-spacing: 2px; }
+        h5 { color: var(--neon-blue); border-bottom: 1px solid #444; padding-bottom: 5px; }
+
+        .container {
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .instructions {
+            background: rgba(0, 242, 255, 0.1);
+            padding: 10px;
+            border-left: 4px solid var(--neon-blue);
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 4px;
+            font-weight: bold;
+            color: #aaa;
+            font-size: 0.85em;
+            text-transform: uppercase;
+        }
+
+        input {
+            background: #111;
+            border: 1px solid #444;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+        }
+
+        input[readonly] {
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+            font-weight: bold;
+            cursor: default;
+        }
+
+        .results-section {
+            margin-top: ;
+            padding-top: ;
+            border-top: ;
+        }
+    </style>
+	
+</head>
+<body>
+
+    <header>
+        <h2>Differential Tuner</h2>
+    </header>
+	
+	<div>
+    
+		<div class="stat-box">
+			<center><p>There is no "magic formula" for diffs—it relies on car power and feel.
+			<br>The golden rule: <strong>Start low and add</strong> as needed to manage wheelspin.</p></center>
+		</div>
+
+		<div class="grid">
+			<!-- RWD / General Baseline -->
+			<div class="card" style="background: rgba(0,0,0,0.3);">
+				<span class="stat-label" style="color: var(--neon-pink);">General / RWD Baseline</span>
+				<ul>
+					<li><strong>Rear Accel:</strong> <span class="highlight">30% – 50%</span></li>
+					<li><strong>Rear Decel:</strong> <span class="highlight">15% – 30%</span></li>
+					<li><small>Higher Accel = More Oversteer</small></li>
+				</ul>
+			</div>
+        
+			<!-- AWD Specific -->
+			<div class="card" style="background: rgba(0,0,0,0.3);">
+				<span class="stat-label" style="color: var(--neon-pink);">AWD Specific Setup</span>
+				<ul>
+					<li><strong>Front:</strong> 30% Accel / 10% Decel</li>
+					<li><strong>Rear:</strong> 50% Accel / 20% Decel</li>
+					<li><strong>Center Bias:</strong> <span class="highlight">70% – 80% (Rear)</span></li>
+				</ul>
+			</div>
+		</div>
+
+    <h5 style="color: var(--neon-blue);">The "Start Low" Methodology</h5>
+		<div class="stat-box">
+			<ol style="padding-left: 20px; line-height: 1.6;">
+				<li>Set <strong>Accel</strong> to 20–30% and <strong>Decel</strong> to 10–15%.</li>
+				<li>Test corner exits. If the <strong>inside tire spins</strong>, raise Accel in +5% increments.</li>
+				<li>For <strong>AWD</strong>, set Front Accel higher (60–80%) if you need the car to "pull" straight.</li>
+			</ol>
+		</div>
+	</div>
+
+    <footer>
+        <p>&copy; 2026 fingergunz | Forza Tuning Utility</p>
+    </footer>
+
+</body>
+</html>

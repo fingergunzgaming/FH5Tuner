@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forza Horizon 5 Tire Pressure Tuner!</title>
+    <style>
+        :root {
+            --neon-pink: #ff0055;
+            --neon-blue: #00f2ff;
+            --dark-bg: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--neon-pink);
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h2 { color: var(--neon-pink); text-transform: uppercase; letter-spacing: 2px; }
+        h5 { color: var(--neon-blue); border-bottom: 1px solid #444; padding-bottom: 5px; }
+
+        .container {
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .instructions {
+            background: rgba(0, 242, 255, 0.1);
+            padding: 10px;
+            border-left: 4px solid var(--neon-blue);
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 4px;
+            font-weight: bold;
+            color: #aaa;
+            font-size: 0.85em;
+            text-transform: uppercase;
+        }
+
+        input {
+            background: #111;
+            border: 1px solid #444;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+        }
+
+        input[readonly] {
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+            font-weight: bold;
+            cursor: default;
+        }
+
+        .results-section {
+            margin-top: ;
+            padding-top: ;
+            border-top: ;
+        }
+    </style>
+	
+</head>
+<body>
+
+    <header>
+        <h2>Tire Pressure</h2>
+    </header>
+	
+	<div class="stat-box">
+        <center><p>Tire pressures should generally be tuned to achieve a <strong>hot pressure of 30–34 PSI</strong> on asphalt.
+        <br>Aim for an optimal target of <strong>32–33 PSI</strong> for maximum grip.
+		<br>Start cold at 28–30 PSI and adjust based on telemetry.</p></center>
+    </div>
+
+    <div class="grid">
+        <section>
+            <h5>Guidelines</h5>
+            <ul>
+                <li><strong>Optimal Hot:</strong> 30–34 PSI (after driving)</li>
+                <li><strong>Road/Racing:</strong> 28–30 PSI (Cold)</li>
+                <li><strong>Dirt/Rally:</strong> 25–30 PSI</li>
+                <li><strong>Cross Country:</strong> ~24 PSI</li>
+            </ul>
+        </section>
+
+        <section>
+            <h5>Tuning Logic</h5>
+            <ul>
+                <li><strong>Less Pressure:</strong> More grip, less responsive</li>
+                <li><strong>More Pressure:</strong> Less grip, sharper handling</li>
+                <li><strong>Understeer Fix:</strong> Decrease Front / Increase Rear</li>
+                <li><strong>Oversteer Fix:</strong> Increase Front / Decrease Rear</li>
+            </ul>
+        </section>
+    </div>
+
+    <h5>Telemetry Pro-Tip</h5>
+    <center><p>Monitor tire heat in the telemetry overlay.
+	<br>Aim for <strong>2/3 to full orange/yellow</strong> coloring during heavy cornering to ensure the tire is working at its peak temperature.</p></center>
+
+    <center><p class="note">Note: Default pressures are often too high.
+	<br>Starting with a lower, equal setting across all tires is usually the best first step.</p></center>
+</div>
+
+</body>
+</html>
