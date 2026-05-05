@@ -8,139 +8,142 @@
         :root {
             --neon-pink: #ff0055;
             --neon-blue: #00f2ff;
-            --dark-bg: #1a1a1a;
-            --card-bg: #2d2d2d;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
             --text-color: #e0e0e0;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--dark-bg);
             color: var(--text-color);
             margin: 0;
+            padding: 20px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
+            justify-content: center;
+        }
+
+        .container {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid #333;
         }
 
         header {
             text-align: center;
+            margin-bottom: 25px;
             border-bottom: 1px solid var(--neon-pink);
-            margin-bottom: 15px;
-            width: 100%;
-            max-width: 800px;
+            padding-bottom: 10px;
         }
 
-        h2 { color: var(--neon-pink); text-transform: uppercase; letter-spacing: 2px; }
-        h5 { color: var(--neon-blue); border-bottom: 1px solid #444; padding-bottom: 5px; }
-
-        .container {
-            background: var(--card-bg);
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 10px 10px rgba(0,0,0,0.5);
-            max-width: 800px;
-            width: 100%;
+        h2 { 
+            color: var(--neon-pink); 
+            text-transform: uppercase; 
+            letter-spacing: 3px;
+            margin: 0;
         }
 
-        .instructions {
-            background: rgba(0, 242, 255, 0.1);
-            padding: 10px;
-            border-left: 4px solid var(--neon-blue);
-            margin-bottom: 15px;
-            font-size: 0.9em;
+        .stat-box {
+            background: rgba(255, 0, 85, 0.05);
+            border: 1px solid var(--neon-pink);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
             line-height: 1.6;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
         }
 
-        .input-group {
-            display: flex;
-            flex-direction: column;
+        .card {
+            background: #252525;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--neon-blue);
         }
 
-        label {
-            margin-bottom: 4px;
-            font-weight: bold;
-            color: #aaa;
-            font-size: 0.85em;
+        h5 { 
+            color: var(--neon-blue); 
+            margin: 20px 0 10px 0;
             text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 8px;
         }
 
-        input {
-            background: #111;
-            border: 1px solid #444;
-            color: white;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 1em;
-            transition: border 0.3s;
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        input:focus {
-            outline: none;
-            border-color: var(--neon-blue);
+        li {
+            padding: 8px 0;
+            font-size: 0.95em;
+            border-bottom: 1px solid #2d2d2d;
         }
 
-        input[readonly] {
-            border-color: var(--neon-pink);
+        li:last-child { border-bottom: none; }
+
+        .highlight { color: var(--neon-blue); font-weight: bold; }
+        strong { color: #fff; }
+        .label { color: var(--neon-pink); font-weight: bold; display: block; margin-bottom: 5px; }
+
+        .impact-list li::before {
+            content: "→ ";
             color: var(--neon-pink);
             font-weight: bold;
-            cursor: default;
-        }
-
-        .results-section {
-            margin-top: ;
-            padding-top: ;
-            border-top: ;
         }
     </style>
-	
 </head>
 <body>
 
+<div class="container">
     <header>
         <h2>Brake Tuner</h2>
     </header>
 
-    <div class="card" style="">
-  
     <div class="stat-box">
-        <center><p>Braking in Forza relies on maximizing weight transfer and managing tire grip.
-		<br>The goal is to apply maximum pressure in a straight line before a turn, then release gradually while turning.</p></center>
+        <p>Braking in Forza relies on maximizing weight transfer and managing tire grip.<br>
+        <strong>The goal:</strong> Apply maximum pressure in a straight line before a turn, then release gradually while turning.</p>
     </div>
 
     <div class="grid">
-        <div class="card" style="background: rgba(0,0,0,0.3);">
-            <span class="stat-label" style="color: var(--neon-pink);">Standard Setup</span>
+        <div class="card">
+            <span class="label">Standard Setup</span>
             <ul>
                 <li>Pressure: <span class="highlight">100% – 130%</span></li>
                 <li>Bias: <span class="highlight">45% – 55%</span></li>
-				<li>Pro Pressure: <span class="highlight">110% – 120%</span></li>
-                <li>Bias: <span class="highlight">47% – 49%</span></li>
+                <li>Pro Pressure: <span class="highlight">110% – 120%</span></li>
+                <li>Pro Bias: <span class="highlight">47% – 49%</span></li>
             </ul>
         </div>
         
-        <div class="card" style="background: rgba(0,0,0,0.3);">
-            <span class="stat-label" style="color: var(--neon-pink);">Pro Techniques</span>
+        <div class="card">
+            <span class="label">Pro Techniques</span>
             <ul>
-                <li>ABS Off: Press less peddle to avoid lock-up.</li>
-                <li>Modulation: Hardest in; Soft out.</li>
-				<li>Braking Line: Turn on braking line assist.</li>
-				<li>Do it 4 Dale: More gas; counter steer.</li>
+                <li><strong>ABS Off:</strong> Modulate pedal to avoid lock-up</li>
+                <li><strong>Modulation:</strong> Hard entry; Soft release</li>
+                <li><strong>Assists:</strong> Use braking line to find markers</li>
+                <li><strong>Do it 4 Dale:</strong> More gas; counter steer</li>
             </ul>
         </div>
     </div>
 
     <h5>Tuning Impact</h5>
-    <ul style="line-height: 1.6;">
-        <li><span style="color: var(--neon-pink);">Forward Bias (48-52%):</span> Increases stability during heavy braking.</li>
-        <li><span style="color: var(--neon-pink);">Rearward Bias:</span> Helps the car rotate into tight corners.</li>
+    <ul class="impact-list">
+        <li><strong>Forward Bias (48-52%):</strong> Increases stability during heavy braking.</li>
+        <li><strong>Rearward Bias:</strong> Helps the car rotate into tight corners.</li>
     </ul>
 </div>
 
