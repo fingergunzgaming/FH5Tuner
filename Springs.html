@@ -121,125 +121,54 @@
     </style>
 	
 	<script>
-    function calculateNormal() {
-        const getV = (id) => parseFloat(document.getElementById(id).value) || 0;
-        const setV = (id, val) => document.getElementById(id).value = val.toFixed(2);
+    	function calculateNormal() {
+        	const getV = (id) => parseFloat(document.getElementById(id).value) || 0;
+        	const setV = (id, val) => document.getElementById(id).value = val.toFixed(2);
 
-        // 1. Get the Weight Distribution (The "Driver" of the formula)
-        // Ensure you have an input with id="FWP" in your HTML
-        const FWP_Raw = getV('FWP'); 
-        const FWP = FWP_Raw / 100;    // Convert e.g., 55 to 0.55
-        const RWP = (100 - FWP_Raw) / 100; // The remainder for the rear
+        	// 1. Get the Weight Distribution (The "Driver" of the formula)
+        	// Ensure you have an input with id="FWP" in your HTML
+        	const FWP_Raw = getV('FWP'); 
+        	const FWP = FWP_Raw / 100;    // Convert e.g., 55 to 0.55
+        	const RWP = (100 - FWP_Raw) / 100; // The remainder for the rear
 
-        // Update the Rear Weight % field if you have one
-        if(document.getElementById('RWP')) {
-            document.getElementById('RWP').value = (100 - FWP_Raw).toFixed(1);
-        }
+        	// Update the Rear Weight % field if you have one
+        	if(document.getElementById('RWP')) {
+            	document.getElementById('RWP').value = (100 - FWP_Raw).toFixed(1);
+        	}
 
-        // 2. Front Calculation
-        const FSMN = getV('FSMN');
-        const FSMX = getV('FSMX');
+        	// 2. Front Calculation
+        	const FSMN = getV('FSMN');
+        	const FSMX = getV('FSMX');
         
-        if (FSMX !== 0) {
-            // Standard Forza Tuning Formula
-            const FSresult = (FSMX - FSMN) * (FWP / 2) + FSMN;
-            setV('FSresult', FSresult);
-            setV('NFS', FSresult); // Setting 'New Front' to the same result
-        }
+        	if (FSMX !== 0) {
+            	// Standard Forza Tuning Formula
+            	const FSresult = (FSMX - FSMN) * (FWP / 2) + FSMN;
+            	setV('FSresult', FSresult);
+           	 setV('NFS', FSresult); // Setting 'New Front' to the same result
+        	}
 
-        // 3. Rear Calculation
-        const RSMN = getV('RSMN');
-        const RSMX = getV('RSMX');
+        	// 3. Rear Calculation
+        	const RSMN = getV('RSMN');
+        	const RSMX = getV('RSMX');
         
-        if (RSMX !== 0) {
-            // Standard Forza Tuning Formula
-            const RSresult = (RSMX - RSMN) * (RWP / 2) + RSMN;
-            setV('RSresult', RSresult);
-            setV('NRS', RSresult); // Setting 'New Rear' to the same result
-        }
-    }
-	
-	function calculateSoft() {
-        const getV = (id) => parseFloat(document.getElementById(id).value) || 0;
-        const setV = (id, val) => document.getElementById(id).value = val.toFixed(2);
-
-        // 1. Get the Weight Distribution (The "Driver" of the formula)
-        // Ensure you have an input with id="FWP" in your HTML
-        const FWP_Raw = getV('FWP'); 
-        const FWP = FWP_Raw / 100;    // Convert e.g., 55 to 0.55
-        const RWP = (100 - FWP_Raw) / 100; // The remainder for the rear
-
-        // Update the Rear Weight % field if you have one
-        if(document.getElementById('RWP')) {
-            document.getElementById('RWP').value = (100 - FWP_Raw).toFixed(1);
-        }
-
-        // 2. Front Calculation
-        const FSMN = getV('FSMN');
-        const FSMX = getV('FSMX');
-        
-        if (FSMX !== 0) {
-            // Standard Forza Tuning Formula
-            const FSresult = (FSMX - FSMN) * (FWP / 2.5) + FSMN;
-            setV('FSresult', FSresult);
-            setV('NFS', FSresult); // Setting 'New Front' to the same result
-        }
-
-        // 3. Rear Calculation
-        const RSMN = getV('RSMN');
-        const RSMX = getV('RSMX');
-        
-        if (RSMX !== 0) {
-            // Standard Forza Tuning Formula
-            const RSresult = (RSMX - RSMN) * (RWP / 2.5) + RSMN;
-            setV('RSresult', RSresult);
-            setV('NRS', RSresult); // Setting 'New Rear' to the same result
-        }
-    }
-	
-	function calculateStiff() {
-        const getV = (id) => parseFloat(document.getElementById(id).value) || 0;
-        const setV = (id, val) => document.getElementById(id).value = val.toFixed(2);
-
-        // 1. Get the Weight Distribution (The "Driver" of the formula)
-        // Ensure you have an input with id="FWP" in your HTML
-        const FWP_Raw = getV('FWP'); 
-        const FWP = FWP_Raw / 100;    // Convert e.g., 55 to 0.55
-        const RWP = (100 - FWP_Raw) / 100; // The remainder for the rear
-
-        // Update the Rear Weight % field if you have one
-        if(document.getElementById('RWP')) {
-            document.getElementById('RWP').value = (100 - FWP_Raw).toFixed(1);
-        }
-
-        // 2. Front Calculation
-        const FSMN = getV('FSMN');
-        const FSMX = getV('FSMX');
-        
-        if (FSMX !== 0) {
-            // Standard Forza Tuning Formula
-            const FSresult = (FSMX - FSMN) * FWP + FSMN;
-            setV('FSresult', FSresult);
-            setV('NFS', FSresult); // Setting 'New Front' to the same result
-        }
-
-        // 3. Rear Calculation
-        const RSMN = getV('RSMN');
-        const RSMX = getV('RSMX');
-        
-        if (RSMX !== 0) {
-            // Standard Forza Tuning Formula
-            const RSresult = (RSMX - RSMN) * RWP + RSMN;
-            setV('RSresult', RSresult);
-            setV('NRS', RSresult); // Setting 'New Rear' to the same result
-        }
-    }
-</script>
+        	if (RSMX !== 0) {
+            	// Standard Forza Tuning Formula
+            	const RSresult = (RSMX - RSMN) * (RWP / 2) + RSMN;
+            	setV('RSresult', RSresult);
+            	setV('NRS', RSresult); // Setting 'New Rear' to the same result
+        	}
+    	}
+	</script>
 	
 </head>
 <body>
 	
 	<div class="container">
+
+		<header>
+        	<h2>Springs Tuner</h2>
+    	</header>
+		
         <div class="instructions">
             <strong>How to use:</strong> Upgrade the vehicle with racing springs.
 			<br>Then, input the vehicles min and max springs and front weight values below!
@@ -274,15 +203,6 @@
             <div class="input-group">
                 <label>Rear Weight Percentage</label>
                 <input type="number" id="RWP" placeholder="e.g. 54" readonly>
-            </div>
-        </div>
-		
-		<div class="cal-section">
-		<h5> </h5>
-            <div class="grid">
-                <div class="input-group"><button class="neon-btn" onclick="calculateSoft()">Calculate Soft</button></div>
-				<div class="input-group"><button class="neon-btn" onclick="calculateNormal()">Calculate Normal</button></div>
-                <div class="input-group"><button class="neon-btn" onclick="calculateStiff()">Calculate Stiff</button></div>
             </div>
         </div>
 
