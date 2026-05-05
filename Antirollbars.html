@@ -121,45 +121,7 @@
     </style>
 	
 	<script>
-    function calculateSoft() {
-        const getV = (id) => parseFloat(document.getElementById(id).value) || 0;
-        const setV = (id, val) => document.getElementById(id).value = val.toFixed(2);
-
-        // 1. Get the Weight Distribution (The "Driver" of the formula)
-        // Ensure you have an input with id="FWP" in your HTML
-        const FWP_Raw = getV('FWP'); 
-        const FWP = FWP_Raw / 100;    // Convert e.g., 55 to 0.55
-        const RWP = (100 - FWP_Raw) / 100; // The remainder for the rear
-
-        // Update the Rear Weight % field if you have one
-        if(document.getElementById('RWP')) {
-            document.getElementById('RWP').value = (100 - FWP_Raw).toFixed(1);
-        }
-
-        // 2. Front Calculation
-        const FMN = getV('FMN');
-        const FMX = getV('FMX');
-        
-        if (FMX !== 0) {
-            // Standard Forza Tuning Formula
-            const Fresult = (FMX - FMN) * FWP + FMN;
-            setV('Fresult', Fresult);
-            setV('NF', Fresult * FWP + FMN); // Setting 'New Front' to the same result
-        }
-
-        // 3. Rear Calculation
-        const RMN = getV('RMN');
-        const RMX = getV('RMX');
-        
-        if (RMX !== 0) {
-            // Standard Forza Tuning Formula
-            const Rresult = (RMX - RMN) * RWP + RMN;
-            setV('Rresult', Rresult);
-            setV('NR', Rresult * RWP + RMN); // Setting 'New Rear' to the same result
-        }
-    }
-	
-	function calculateStiff() {
+    function calculateStiff() {
         const getV = (id) => parseFloat(document.getElementById(id).value) || 0;
         const setV = (id, val) => document.getElementById(id).value = val.toFixed(2);
 
@@ -215,15 +177,15 @@
         <div class="grid">
             <div class="input-group">
                 <label>Front Antiroll Bar Min</label>
-                <input type="number" id="FMN" placeholder="e.g. 1" oninput="calculateSoft()">
+                <input type="number" id="FMN" placeholder="e.g. 1" oninput="calculateStiff()">
             </div>
             <div class="input-group">
                 <label>Front Antiroll Bar Max</label>
-                <input type="number" id="FMX" placeholder="e.g. 40" oninput="calculateSoft()">
+                <input type="number" id="FMX" placeholder="e.g. 40" oninput="calculateStiff()">
             </div>
             <div class="input-group">
                 <label>Front Weight Percentage</label>
-                <input type="number" id="FWP" placeholder="e.g. 54" oninput="calculateSoft()">
+                <input type="number" id="FWP" placeholder="e.g. 54" oninput="calculateStiff()">
             </div>
         </div>
 
@@ -231,23 +193,15 @@
         <div class="grid">
             <div class="input-group">
                 <label>Rear Antiroll Bar Min</label>
-                <input type="number" id="RMN" placeholder="e.g. 1" oninput="calculateSoft()">
+                <input type="number" id="RMN" placeholder="e.g. 1" oninput="calculateStiff()">
             </div>
             <div class="input-group">
                 <label>Rear Antiroll Bar Max</label>
-                <input type="number" id="RMX" placeholder="e.g. 40" oninput="calculateSoft()">
+                <input type="number" id="RMX" placeholder="e.g. 40" oninput="calculateStiff()">
             </div>
             <div class="input-group">
                 <label>Rear Weight Percentage</label>
                 <input type="number" id="RWP" placeholder="e.g. 54" readonly>
-            </div>
-        </div>
-		
-		<div class="cal-section">
-		<h5> </h5>
-            <div class="grid">
-                <div class="input-group"><button class="neon-btn" onclick="calculateSoft()">Calculate Soft</button></div>
-                <div class="input-group"><button class="neon-btn" onclick="calculateStiff()">Calculate Stiff</button></div>
             </div>
         </div>
 
